@@ -12,19 +12,12 @@ FROM
 
 
 -- CLEANING		
--- Drop column Unnamed_22,						#Completed
--- Clean ship_postal_code column				#In process , change method for different command
--- Clean Courier_Status column					#Completed
--- Clean ship_city column						#Completed
--- Clean ship_state column						#Completed
-
--- Working on null values
---		33 rows have null in ship_city, ship_state, ship_postal_code and ship_country. Basicly I can delete them, it wouldn't have much impact on over all result
---		Column promotion_ids has null instead of 'without promotion', to fix these null values I can replace null with 'without promotion'
---		In fulfilled_by we have 2 values, method for delivery from amazon and null. I will change null value to unknown.
---		Column Amount have 8 000 null values, I noticed that it is because order was cancelled. But when I check by Status, it has 18 000. Replace all Amounts for this condition with null
---		Where Status = 'Cancelled', I must currency = INR, promotion_ids = null, Amount = null
-
+-- Drop column Unnamed_22,				
+-- Clean ship_postal_code column				
+-- Clean Courier_Status column					
+-- Clean ship_city column					
+-- Clean ship_state column
+	
 
 
 -- Drop column Unnamed_22
@@ -83,11 +76,11 @@ SET
 
 
 -- Working on null values
--- 1		33 rows have null in ship_city, ship_state, ship_postal_code and ship_country. Basicly I can delete them, it wouldn't have much impact on over all result
--- 2		Column promotion_ids has null instead of 'without promotion', to fix these null values I can replace null with 'without promotion'
+-- 1		33 rows have null in ship_city, ship_state, ship_postal_code and ship_country. Basically I can delete them, it won't have much impact on over all result
+-- 2		Column promotion_ids has null values where order was without promotion, to fix these null values I can replace null with 'without promotion'
 -- 3		In fulfilled_by we have 2 values, method for delivery from amazon and null. I will change null value to unknown.
--- 4		Column Amount have 8 000 null values, I noticed that it is because order was cancelled. But when I check by Status, it has 18 000. Replace all Amounts for this condition with null
--- 5	  	Where Status = 'Cancelled', I must currency = INR, promotion_ids = null, Amount = null
+-- 4		Column Amount have 8 000 null values, I noticed that it is because order was cancelled. But when I check by Status, it has 18 000. Replace all Amounts with this condition to 0
+-- 5	  	Where Status = 'Cancelled', I must change to currency = INR, promotion_ids = null, Amount = null
 
 
 -- 1
@@ -123,7 +116,7 @@ SET currency = 'INR'
 WHERE currency is null
 
 
--- For some cases during exploration I will need table where I only have rows that contain only  Courier_Status = 'Shipped'
+-- For some cases during exploration I will need table where I only have rows that contain only Courier_Status = 'Shipped'
 
 DROP TABLE IF EXISTS #temp_Sales_Shipped
 CREATE TABLE #temp_Sales_Shipped
@@ -175,49 +168,48 @@ FROM
 
 --Exploration
 
--- #Completed Distribution in column Fulfilment 
--- #Completed Distribution in ship_service_level   # FIXED(FORMAT(, 'N2'))
--- #Completed Distribution in Courier_Status	   # FIXED(FORMAT(, 'N2'))
+-- Distribution in column Fulfilment 
+-- Distribution in ship_service_level   
+-- Distribution in Courier_Status	  
 
 --Items
 
--- #Completed Distribution of sizes. Understand what will be the best number of 
--- #In progress every item sizes our warehouse should have. #EXPLORE WITH COURIER_STATUS
--- #Completed What are the best selling products.
--- #In progress How likely client going to buy qty more than 1? #EXPLORE WITH COURIER_STATUS
+-- Distribution of sizes.
+-- What are the best selling products.
+-- How likely client going to buy qty more than 1? 
 --	B2B
---	#Completed What role b2b play in this distribution.
---	#Completed How many orders are by b2b
---  #Completed Top orders by B2B 
---  #Completed top times when customer spent a lot of money 
+--	What role b2b play in this distribution.
+--	How many orders are by b2b
+--  Top orders by B2B 
+--  Top times when b2b spent a lot of money 
+--  Top times when customer spent a lot of money 
 
 --Items and Amount
 
---#In progress Find out which items are less likely to be cancelled. #Need more statistical knowledge
---		Propose what store can do to help customers order right size
---	#Completed Distribution of items by Amount
---	#Completed What items people more likely to buy? Cheap or expensive? #Answer will be in viz
+-- Find out which items are less likely to be cancelled. 
+-- Distribution of items by Amount
+-- What items people more likely to buy? Cheap or expensive? 
 
 --Earnings
 
---	#Completed How many items(qty) were sold per month?
---	#Completed How many items(qty) were sold per week?
---	#Completed How many items(qty) were sold per day?
---	#Completed How much did the store earn per month?
---	#Completed How much did the store earn per week?
---	#Completed How much did the store earn per day?
---	#In progress How differ profit each month?					# I will answer by viz
---	#In progress How differ the number of sales each month		# I will answer by viz
+--	How many items(qty) were sold per month?
+--	How many items(qty) were sold per week?
+--	How many items(qty) were sold per day?
+--	How much did the store earn per month?
+--	How much did the store earn per week?
+--	How much did the store earn per day?
+--	How differ profit each month?				
+--	How differ the number of sales each month?	
 
 --Promotions
 
---	#Completed What are the most popular promotions
---	#Completed What is distribution of orders with and without promotion
+--	What are the most popular promotions?
+--	What is distribution of orders with and without promotion?
 
 --Location
 
---	#Completed Which cities, states, are the most popular
---	#Completed Are there any orders from other countries
+--	Which cities, states, are the most popular?
+--	Are there any orders from other countries?
 
 
 
@@ -279,9 +271,7 @@ GROUP BY
 
 --Items
 
---Distribution of sizes. Understand what will be the best number of 
---every item sizes our warehouse should have. #EXPLORE WITH COURIER_STATUS
-
+--Distribution of sizes.
 
 SELECT 
 	DISTINCT Category,
@@ -298,11 +288,9 @@ GROUP BY
 ORDER BY 
 	COUNT_EACH_SIZE DESC
 
-		--	first 20/57 Categories have 80 percent of all orders. 
-		-- My advice will be for him to start selling these 20 categories to find his clients and start 
-		-- receiving first orders.
+		-- 20/57 Categories have 80 percent of all orders. 
 
---What are the best selling products.
+--What are the best-selling products.
 
 SELECT 
 	DISTINCT Category,
@@ -352,7 +340,7 @@ ORDER BY
 	total DESC
 
 
---		chance that someone will buy more than 1 item per order is 0.33%
+--		Chance that someone will buy more than 1 item per order is 0.33%
 --		I noticed that orders with qty bigger than 1, also were cancelled but only where qty = 2
 --		I think it is because people tend to order by mistake 2 instead of 1.
 
@@ -414,7 +402,7 @@ ORDER BY
 	Amount DESC
 
 
--- top times when customer spent a lot of money 
+-- Top times when customer spent a lot of money 
 
 SELECT 
 	Category, Qty, Amount, B2B
@@ -429,16 +417,13 @@ ORDER BY
 --Items and Amount
 
 --Find out which items are less likely to be cancelled. 
---		Propose what store can do to help customers order right size
 --Distribution of items by Amount
 --What items people more likely to buy? Cheap or expensive?
 
 
 
 
---Find out which items are less likely to be cancelled. #Require more knowledge about statistics.
--- It's wrong to compare categories with different sample sizes, that is why I need to find method
--- that fixes this problem.
+--Find out which items are less likely to be cancelled.
 
 SELECT 
 	Category, Courier_Status
@@ -535,9 +520,6 @@ ORDER BY
 --How much did the store earn per week?
 --How many items(qty) were sold per day?
 --How much did the store earn per day?
---How differ profit each month?					# I will answer by viz
---How differ the number of sales each month		# I will answer by viz
-
 
 
 
@@ -655,10 +637,6 @@ WHERE
 	promotion_ids = 'without promotion'
 
 
-select *
-from Amazon.dbo.ReportSales
-
-
 --Location
 
 --Which cities, states are the most popular
@@ -675,7 +653,7 @@ ORDER BY
 	COUNT(ship_city) DESC
 
 
-			-- NEW DELHI - this city has only 250k of population, while in in compeats by Amount 
+			-- NEW DELHI - this city has only 250k of population, and still it competes by Amount 
 			-- of orders with cities that has more than 5million population, unexpected result
 
 SELECT 
