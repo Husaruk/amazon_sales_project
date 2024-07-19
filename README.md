@@ -114,7 +114,7 @@ Upon comprehensive analysis, the visual data reinforces our earlier findings. Wh
 
 ![image](https://github.com/user-attachments/assets/d1ee1a19-dd0a-43c2-984f-de970c57d702)
 
-Surprisingly, the probability of clients buying more than one quantity is minimal, constituting a mere 0.3% of all orders.
+Surprisingly, the probability of clients buying more than one item is minimal, constituting a mere 0.3% of all orders.
 
 Upon closer inspection of cancelled orders, a noteworthy pattern emerged. Specifically, 10% of all orders with a quantity of 2 were cancelled, while with quantity of 1 only 6%, hinting at the possibility of customers behaviour accidentally ordering two items instead of one.
 
