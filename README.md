@@ -1,6 +1,8 @@
 <h2>Analyzing and cleaning dataset from Amazon store</h2>
 
-**The idea of exploring sales data on Amazon originated from a conversation with my friend. We were just chatting about different things, and he mentioned how selling products on Amazon could be a great way to make money. He was thinking about going back to India and was looking for ideas to earn money there. This conversation motivated me to help him out. I decided to dig into the dataset of Amazon sales in India to demonstrate how I could support him if he decided to start his own online store.**
+**The idea of exploring sales data on Amazon originated from a conversation with my friend. We were just chatting about different things, and he mentioned how selling products on Amazon could be a great way to make money. He was thinking about going back to India and was looking for ideas to earn money there.**
+
+**This conversation motivated me to help him out. I decided to dig into the dataset of Amazon sales in India to demonstrate how I could support him if he decided to start his own online store.**
 
 <h3>Cleaning</h3>
 
@@ -62,21 +64,20 @@ I made adjustments to ensure accuracy in the dataset. Specifically, when the “
 
 * Which cities and states are the most popular?
 * Are there any orders from other countries?
-
-
-
+ 
+ 
 **1. Delivery**
 
 **What is distribution in (column Fulfilment, column ship_service_level, column Courier_Status)?**
 
-**Column Fulfilment**
+* **Column Fulfilment**
 
 ![image](https://github.com/user-attachments/assets/bafac67a-19b8-4fe3-b02a-1343a65f21e1)
 
 70% of all deliveries were made by amazon, and in 30% people choose other fulfilment method
 
 
-**Column ship_service_level**
+* **Column ship_service_level**
 
 ![image](https://github.com/user-attachments/assets/65ddb28e-be3e-4736-b663-c9cfa10c4b06)
 
