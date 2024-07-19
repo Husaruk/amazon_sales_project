@@ -85,32 +85,32 @@ I made adjustments to ensure accuracy in the dataset. Specifically, when the “
 Intriguingly, 69% of orders are by expedited delivery — an unexpectedly high figure that prompts reflection on the popularity. Perhaps a revelation for me, as I hadn’t anticipated this level of preference, possibly due to my personal usage patterns.
 
 
-Column Status
+* **Column Status**
 
 ![image](https://github.com/user-attachments/assets/d551992b-11ff-49d9-a9ab-167c10401242)
 
 Delving into order statuses, we encountered 2,112 instances where orders were not received by buyers due to various reasons. Simultaneously, a considerable 18,325 orders faced cancellation for reasons unknown to us, which gives us together almost 16% of the dataset. This percentage underscores the significance of order cancellations.
 
 
-How likely orders to be canceled in different categories?
+* **How likely orders to be canceled in different categories?**
 
 ![image](https://github.com/user-attachments/assets/c4d1c743-a478-459e-b043-1ddcfe0a1325)
 
 **2. Items**
 
-**What are best items and their sizes by sales?**
+* **What are best items and their sizes by sales?**
 
 ![image](https://github.com/user-attachments/assets/a4deac7b-7494-406a-a10e-88f47c8e0f81)
 
 A compelling discovery emerges when dissecting sales — the first 20 categories out of a total of 57 account for a whopping 80% of all sales. Surprisingly, only 3 out of 9 categories contain the items responsible for this substantial share. The image below highlights these critical items and their corresponding sizes, emphasizing the importance of keeping them consistently in stock.
 
-**What are the best-selling products?**
+* **What are the best-selling products?**
 
 ![image](https://github.com/user-attachments/assets/a635e6ca-6cd8-43c2-be36-2a44ad38279f)
 
 Upon comprehensive analysis, the visual data reinforces our earlier findings. When considering all available sizes, these three categories astonishingly contribute to 90% of all sales — this discovery is truly mind-blowing that underscores the significant impact of these particular product categories.
 
-**How likely client going to buy more than 1 qty(quantity)?**
+* **How likely client going to buy more than 1 qty(quantity)?**
 
 ![image](https://github.com/user-attachments/assets/d1ee1a19-dd0a-43c2-984f-de970c57d702)
 
@@ -118,7 +118,7 @@ Surprisingly, the probability of clients buying more than one quantity is minima
 
 Upon closer inspection of cancelled orders, a noteworthy pattern emerged. Specifically, 10% of all orders with a quantity of 2 were cancelled, while with quantity of 1 only 6%, hinting at the possibility of customers behaviour accidentally ordering two items instead of one.
 
-**What is distribution of items by price?**
+* **What is distribution of items by price?**
 
 ![image](https://github.com/user-attachments/assets/b45afbea-dc81-4c47-bd38-d59eb9957dd9)
 
@@ -126,13 +126,13 @@ To bring order to the numerical landscape, I employed the ROUND() function, yiel
 
 **3. B2B**
 
-**What role b2b play in this distribution?**
+* **What role b2b play in this distribution?**
 
 ![image](https://github.com/user-attachments/assets/1f600335-bd74-4a0a-ba7d-b5d1fa897d98)
 
 B2B transactions do not exert a significant influence on our overall sales.
 
-**How many orders are made by b2b?**
+* **How many orders are made by b2b?**
 
 ![image](https://github.com/user-attachments/assets/8b977c29-bd4b-4a0f-8c44-770343aca79f)
 
@@ -140,44 +140,45 @@ Unveiling the B2B landscape, a total of 793 orders, a modest fraction, were plac
 
 **4. Earnings**
 
-**How many items(qty) were sold per month?**
+* **How many items(qty) were sold per month?**
 
 ![image](https://github.com/user-attachments/assets/8c8420c0-c89a-4327-b1d1-c6c5e0739e37)
 
 The apparent dip in sales for March is attributed to the limitation of dataset, which captures information only from the last day of the month.
 
-**How many items(qty) were sold per week?**
+* **How many items(qty) were sold per week?**
 
 ![image](https://github.com/user-attachments/assets/ba75f851-c191-48ca-9a8d-43ae0f4c42bf)
 
-How much did the store earn per month?
+* **How much did the store earn per month?**
 
 ![image](https://github.com/user-attachments/assets/d4277c9f-3d51-4f78-877d-ec025724e41e)
 
-**How much did the store earn per week?**
+* **How much did the store earn per week?**
 
 ![image](https://github.com/user-attachments/assets/2cf33f49-817b-45b7-a074-b939da72b7bb)
 
 **5. Promotions**
 
-**What are the most popular promotions?**
+* **What are the most popular promotions?**
 
 ![image](https://github.com/user-attachments/assets/e595c810-8baf-4fee-928f-f7fb473af672)
 
 Starting from promotions that have >100 orders we see the most popular promotions within this dataset.
 
-**What is distribution of orders with and without promotion?**
+* **What is distribution of orders with and without promotion?**
 
 ![image](https://github.com/user-attachments/assets/6a092236-1ae0-46bb-a235-abd881623d0b)
 
 **6. Location**
 
-**Which cities, states, are the most popular?**
+* **Which cities, states, are the most popular?**
 
 ![image](https://github.com/user-attachments/assets/584f7089-3672-4e00-8407-b54f6c778a12)
 ![image](https://github.com/user-attachments/assets/fe67171f-9723-4fb2-b128-86ab52ec215a)
 
-**Are there any orders from other countries?**
+* **Are there any orders from other countries?**
+
 The dataset indicates an absence of orders from other countries.
 
 ## Summary
